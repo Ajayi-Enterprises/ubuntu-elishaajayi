@@ -108,5 +108,18 @@ let g:ycm_echo_current_diagnostic = 1            " Echo line's diagnostic that c
 nmap <F2> :NERDTreeToggle<CR> 
 " F9 to toggle tagbar
 nmap <F8> :TagbarToggle<CR>
+" F6 to toggle terminal
+nnoremap <F6> :call ToggleTerminal()<CR>
 
+function! ToggleTerminal()
+    if exists('g:term_opened') && g:term_opened
+        " If the terminal is open, close it
+        :silent !exit<CR>
+        let g:term_opened = 0
+    else
+        " If the terminal is closed, open it
+        :term<CR>
+        let g:term_opened = 1
+    endif
+endfunction
 
